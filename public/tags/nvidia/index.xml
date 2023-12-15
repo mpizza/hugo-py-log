@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NVIDIA on PYChen&#39;s blog</title>
+    <link>https://example.org/tags/nvidia/</link>
+    <description>Recent content in NVIDIA on PYChen&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 10 May 2023 15:29:49 +0800</lastBuildDate><atom:link href="https://example.org/tags/nvidia/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 NVIDIA Jetson Nano 上跑 Yolov5 上踩的雷!!!</title>
+      <link>https://example.org/posts/nvidia-jetson-nano-yolov5/</link>
+      <pubDate>Wed, 10 May 2023 15:29:49 +0800</pubDate>
+      
+      <guid>https://example.org/posts/nvidia-jetson-nano-yolov5/</guid>
+      
+      <description>從 N 年前開始學網球的時候，就覺得應該要有一類似掃地機器人的工具，幫忙撿球。最近比較有時候，就想來試試。
+其實圖像辨識的 Model 很多，研究了一下，Yolo演算法把圖片分割的方式非常特別，所以很像試試看。但在 Jetson Nano 上跑起 Yolov5 可是整整花了我兩個晚上啊 !!! 這篇文章來說說我踩過的雷。
+以下五大點是踩雷結論:
+用官方的 docker 跑起來 nvcr.io/nvidia/l4t-ml:r32.5.0-py3
+git clone https://github.com/ultralytics/yolov5 但要切到對應上面 docker 環境的commit 91547edec1a33121b3607e8c946e051514182b4f
+Yolov5 裡的 requirements.txt 有三個套件要 mark 掉，因為 docker 已經幫你建好符合 Jetson Nano 的 opencv-python, torch, torchvision
+第一個錯誤&amp;ldquo;can&amp;rsquo;t get attribute &amp;lsquo;sppf&amp;rsquo; &amp;ldquo;是 Yolov5 已經進化到多了 SPPF 這個function，我們用的 commit 當初沒有，所以我們要手動把這個function 加上。
+這個問題我修改了兩個檔案
+1. utils/google_utils.py
+2. models/common.py
+# yolov5/utils/google_utils.py - response = requests.get(f&amp;#39;https://api.github.com/repos/{repo}/releases/latest&amp;#39;).json() + response = requests.get(f&amp;#39;https://api.github.com/repos/{repo}/releases/tag/v5.0&amp;#39;).json() # yolov5/models/common.py # copy SPPF fubctuon for following link.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

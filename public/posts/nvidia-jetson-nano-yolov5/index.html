@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">在 NVIDIA Jetson Nano 上跑 Yolov5 上踩的雷!!! | PYChen&#39;s blog</title>
+<meta property="og:title" content="在 NVIDIA Jetson Nano 上跑 Yolov5 上踩的雷!!! | PYChen&#39;s blog" />
+<meta name="twitter:title" content="在 NVIDIA Jetson Nano 上跑 Yolov5 上踩的雷!!! | PYChen&#39;s blog" />
+<meta itemprop="name" content="在 NVIDIA Jetson Nano 上跑 Yolov5 上踩的雷!!! | PYChen&#39;s blog" />
+<meta name="application-name" content="在 NVIDIA Jetson Nano 上跑 Yolov5 上踩的雷!!! | PYChen&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="zh-tw" />
+<meta name="language" content="zh-tw" />
+
+
+
+  <meta itemprop="image" content="https://example.org/" />
+  <meta property="og:image" content="https://example.org/" />
+  <meta name="twitter:image" content="https://example.org/" />
+  <meta name="twitter:image:src" content="https://example.org/" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2023-05-10T15:29:49&#43;0800 />
+    <meta property="article:published_time" content=2023-05-10T15:29:49&#43;0800 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "在 NVIDIA Jetson Nano 上跑 Yolov5 上踩的雷!!!",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2023-05-10",
+        "description": "",
+        "wordCount":  200 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2023-05-10",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "PYChen\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.120.4">
+
+    
+
+    <link rel="canonical" href="https://example.org/posts/nvidia-jetson-nano-yolov5/">
+    <link href="/style.min.37d714c3dad058a8229c348caf4beec2f7f4052f9fc5f6298f03636806f39132.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://example.org/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://example.org/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        首頁
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        所有文章
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        關於
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">在 NVIDIA Jetson Nano 上跑 Yolov5 上踩的雷!!!</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2023-05-10T15:29:49&#43;08:00" itemprop="datePublished"> May 10, 2023 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>從 N 年前開始學網球的時候，就覺得應該要有一類似掃地機器人的工具，幫忙撿球。最近比較有時候，就想來試試。</p>
+<p>其實圖像辨識的 Model 很多，研究了一下，Yolo演算法把圖片分割的方式非常特別，所以很像試試看。但在 Jetson Nano 上跑起 Yolov5 可是整整花了我兩個晚上啊 !!! 這篇文章來說說我踩過的雷。</p>
+<p>以下五大點是踩雷結論:</p>
+<ol>
+<li>
+<p>用官方的 docker 跑起來 <a href="http://nvcr.io/nvidia/l4t-ml:r32.5.0-py3">nvcr.io/nvidia/l4t-ml:r32.5.0-py3</a></p>
+</li>
+<li>
+<p>git clone <a href="https://github.com/ultralytics/yolov5">https://github.com/ultralytics/yolov5</a> 但要切到對應上面 docker 環境的commit <mark>91547edec1a33121b3607e8c946e051514182b4f</mark></p>
+</li>
+<li>
+<p>Yolov5 裡的 requirements.txt 有三個套件要 mark 掉，因為 docker 已經幫你建好符合 Jetson Nano 的 <mark>opencv-python, torch, torchvision</mark></p>
+</li>
+</ol>
+<p><img src="/posts/91e0e963-81ee-46b6-985e-c2f8f2fbd534.png" alt=""></p>
+<ol>
+<li>
+<p>第一個錯誤<mark>&ldquo;can&rsquo;t get attribute &lsquo;sppf&rsquo; &ldquo;</mark>是 Yolov5 已經進化到多了 SPPF 這個function，我們用的 commit 當初沒有，所以我們要手動把這個function 加上。</p>
+<p>這個問題我修改了兩個檔案<br>
+1. utils/google_utils.py<br>
+2. models/common.py</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl"># yolov5/utils/google_utils.py
+</span></span><span class="line"><span class="cl">- response = requests.get(f&#39;https://api.github.com/repos/{repo}/releases/latest&#39;).json() 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+ response = requests.get(f&#39;https://api.github.com/repos/{repo}/releases/tag/v5.0&#39;).json() 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># yolov5/models/common.py 
+</span></span><span class="line"><span class="cl"># copy SPPF fubctuon for following link.
+</span></span><span class="line"><span class="cl"># https://github.com/ultralytics/yolov5/blob/v6.0/models/common.py
+</span></span><span class="line"><span class="cl">class SPPF(nn.Module):
+</span></span><span class="line"><span class="cl">    # Spatial Pyramid Pooling - Fast (SPPF) layer for YOLOv5 by Glenn Jocher
+</span></span><span class="line"><span class="cl">    def __init__(self, c1, c2, k=5):  # equivalent to SPP(k=(5, 9, 13))
+</span></span><span class="line"><span class="cl">        super().__init__()
+</span></span><span class="line"><span class="cl">        c_ = c1 // 2  # hidden channels
+</span></span><span class="line"><span class="cl">        self.cv1 = Conv(c1, c_, 1, 1)
+</span></span><span class="line"><span class="cl">        self.cv2 = Conv(c_ * 4, c2, 1, 1)
+</span></span><span class="line"><span class="cl">        self.m = nn.MaxPool2d(kernel_size=k, stride=1, padding=k // 2)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def forward(self, x):
+</span></span><span class="line"><span class="cl">        x = self.cv1(x)
+</span></span><span class="line"><span class="cl">        with warnings.catch_warnings():
+</span></span><span class="line"><span class="cl">            warnings.simplefilter(&#39;ignore&#39;)  # suppress torch 1.9.0 max_pool2d() warning
+</span></span><span class="line"><span class="cl">            y1 = self.m(x)
+</span></span><span class="line"><span class="cl">            y2 = self.m(y1)
+</span></span><span class="line"><span class="cl">            return self.cv2(torch.cat([x, y1, y2, self.m(y2)], 1))
+</span></span></code></pre></div><ol>
+<li>
+<p>第二個錯誤是，&ldquo;the size of tensor a(80) must match the size of tensor b (56) at non-singleton dimension 3&rdquo;，原因是 Yolov5 幫我們預下載的 &ldquo;<a href="http://yolov5s.pt">yolov5s.pt</a>&rdquo; model 是最新的，不是這個 tag v5.0 支援的 model。所以我們要先把自動下載的 &ldquo;<a href="http://yolov5s.pt">yolov5s.pt</a>&rdquo; 刪掉後，再手動下載</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">wget https://github.com/ultralytics/yolov5/releases/download/v5.0/yolov5s.pt
+</span></span></code></pre></div><p>經過以上的踩雷後，Jetson nano 真的可以跑 Yolov5 了!!!! 附上原圖(紅色馬賽客是後來補上的，跑 YoloV5 的時候並沒有馬賽客)，跟跑出來的結果，成果相當的好啊!! 至少第一個球場上的網球都有被標到，看來我的撿球機器人已經邁向了 3%了!!</p>
+</li>
+</ol>
+<p><img src="/posts/62c5c439-ffd6-42f0-b782-28584cb546dd.jpeg" alt=""></p>
+<p><img src="/posts/e30fd96d-52bf-4e15-97c0-557732f732f0.jpeg" alt=""></p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/mpizza" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com/poyu_chen" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="https://www.youtube.com/@goddamnedgame" target="_blank" rel="noopener noreferrer me"
+    title="Youtube">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+    </path>
+    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2023 .
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://example.org/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

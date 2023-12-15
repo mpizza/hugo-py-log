@@ -1,0 +1,56 @@
+baseURL = 'https://example.org/'
+languageCode = 'zh-tw'
+title = "PYChen's blog"
+theme = "hugo-blog-awesome"
+
+# Allow to override `browserconfig.xml` params (configuration for windows embeded browsers)
+[params.browserconfig]
+  TileColor = "#2d89ef" # default windows 10 blue tile color
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/mpizza"
+
+[[params.socialIcons]]
+name = "twitter"
+url = "https://twitter.com/poyu_chen"
+
+[[params.socialIcons]]
+name = "youtube"
+url = "https://www.youtube.com/@goddamnedgame"
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+
+[menu]
+  [[menu.main]]
+    pageRef="/"
+    name = '首頁'
+    url = '/'
+    weight = 10
+  [[menu.main]]
+    pageRef="posts"
+    name = '所有文章'
+    url = '/posts/'
+    weight = 20
+  [[menu.main]]
+    pageRef="about"
+    name = '關於'
+    url = '/about/'
+    weight = 30
+
+# Enable emojis globally
+enableEmoji = true
+ignoreErrors = ["additional-script-loading-error"] # ignore error of loading additional scripts.
+
+# set markup.highlight.noClasses=false to enable code highlight
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
+	[markup.tableOfContents]
+		startLevel = 2 # ToC starts from H2
+		endLevel = 4 # ToC ends at H4
+		ordered = false # generates <ul> instead of <ol>
