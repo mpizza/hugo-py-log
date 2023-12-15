@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://mpizza.github.io/hugo-py-log/'
 languageCode = 'zh-tw'
 title = "PYChen's blog"
 theme = "hugo-blog-awesome-no"
