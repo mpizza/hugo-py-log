@@ -1,7 +1,7 @@
-baseURL = 'https://mpizza.github.io/hugo-py-log/'
+
 languageCode = 'zh-tw'
 title = "PYChen's blog"
-theme = "hugo-blog-awesome-no"
+theme = "hugo-blog-awesome"
 
 # Allow to override `browserconfig.xml` params (configuration for windows embeded browsers)
 [params.browserconfig]

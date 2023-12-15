@@ -18,9 +18,9 @@ tags = ['NVIDIA', 'AI']
 3. Yolov5 裡的 requirements.txt 有三個套件要 mark 掉，因為 docker 已經幫你建好符合 Jetson Nano 的 <mark>opencv-python, torch, torchvision</mark>
     
 
-![](/posts/91e0e963-81ee-46b6-985e-c2f8f2fbd534.png)
+![](91e0e963-81ee-46b6-985e-c2f8f2fbd534.png)
 
-1. 第一個錯誤<mark>"can't get attribute 'sppf' "</mark>是 Yolov5 已經進化到多了 SPPF 這個function，我們用的 commit 當初沒有，所以我們要手動把這個function 加上。
+第一個錯誤<mark>"can't get attribute 'sppf' "</mark>是 Yolov5 已經進化到多了 SPPF 這個function，我們用的 commit 當初沒有，所以我們要手動把這個function 加上。
     
     這個問題我修改了兩個檔案  
     1\. utils/google\_utils.py  
@@ -54,7 +54,7 @@ class SPPF(nn.Module):
             return self.cv2(torch.cat([x, y1, y2, self.m(y2)], 1))
 ```
 
-1. 第二個錯誤是，"the size of tensor a(80) must match the size of tensor b (56) at non-singleton dimension 3"，原因是 Yolov5 幫我們預下載的 "[yolov5s.pt](http://yolov5s.pt)" model 是最新的，不是這個 tag v5.0 支援的 model。所以我們要先把自動下載的 "[yolov5s.pt](http://yolov5s.pt)" 刪掉後，再手動下載
+第二個錯誤是，"the size of tensor a(80) must match the size of tensor b (56) at non-singleton dimension 3"，原因是 Yolov5 幫我們預下載的 "[yolov5s.pt](http://yolov5s.pt)" model 是最新的，不是這個 tag v5.0 支援的 model。所以我們要先把自動下載的 "[yolov5s.pt](http://yolov5s.pt)" 刪掉後，再手動下載
     
     ```plaintext
     wget https://github.com/ultralytics/yolov5/releases/download/v5.0/yolov5s.pt
@@ -63,6 +63,6 @@ class SPPF(nn.Module):
     經過以上的踩雷後，Jetson nano 真的可以跑 Yolov5 了!!!! 附上原圖(紅色馬賽客是後來補上的，跑 YoloV5 的時候並沒有馬賽客)，跟跑出來的結果，成果相當的好啊!! 至少第一個球場上的網球都有被標到，看來我的撿球機器人已經邁向了 3%了!!
     
 
-![](/posts/62c5c439-ffd6-42f0-b782-28584cb546dd.jpeg)
+![](62c5c439-ffd6-42f0-b782-28584cb546dd.jpeg)
 
-![](/posts/e30fd96d-52bf-4e15-97c0-557732f732f0.jpeg)
+![](e30fd96d-52bf-4e15-97c0-557732f732f0.jpeg)
