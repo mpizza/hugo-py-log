@@ -20,10 +20,10 @@
 
 
 
-  <meta itemprop="image" content="https://example.org/" />
-  <meta property="og:image" content="https://example.org/" />
-  <meta name="twitter:image" content="https://example.org/" />
-  <meta name="twitter:image:src" content="https://example.org/" />
+  <meta itemprop="image" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:image:src" content="" />
 
 
 
@@ -52,7 +52,7 @@
         },
         "datePublished": "2023-05-10",
         "description": "",
-        "wordCount":  200 ,
+        "wordCount":  202 ,
         "mainEntityOfPage": "True",
         "dateModified": "2023-05-10",
         "image": {
@@ -71,7 +71,7 @@
 
     
 
-    <link rel="canonical" href="https://example.org/posts/nvidia-jetson-nano-yolov5/">
+    <link rel="canonical" href="/posts/nvidia-jetson-nano-yolov5/">
     <link href="/style.min.37d714c3dad058a8229c348caf4beec2f7f4052f9fc5f6298f03636806f39132.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -85,7 +85,7 @@
 
 
 
-<link rel="manifest" href="https://example.org/site.webmanifest">
+<link rel="manifest" href="/site.webmanifest">
 
 <meta name="msapplication-config" content="/browserconfig.xml">
 <meta name="msapplication-TileColor" content="#2d89ef">
@@ -102,11 +102,11 @@
 
 <div class="navbar" role="navigation">
     <nav class="menu" aria-label="Main Navigation">
-        <a href="https://example.org/" class="logo">
+        <a href="/" class="logo">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
 stroke-linejoin="round" class="feather feather-home">
-<title></title>
+<title>首頁</title>
 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
 <polyline points="9 22 9 12 15 12 15 22"></polyline>
 </svg>
@@ -187,15 +187,12 @@ stroke-linejoin="round" class="feather feather-home">
 <p>Yolov5 裡的 requirements.txt 有三個套件要 mark 掉，因為 docker 已經幫你建好符合 Jetson Nano 的 <mark>opencv-python, torch, torchvision</mark></p>
 </li>
 </ol>
-<p><img src="/posts/91e0e963-81ee-46b6-985e-c2f8f2fbd534.png" alt=""></p>
-<ol>
-<li>
+<p><img src="91e0e963-81ee-46b6-985e-c2f8f2fbd534.png" alt=""></p>
 <p>第一個錯誤<mark>&ldquo;can&rsquo;t get attribute &lsquo;sppf&rsquo; &ldquo;</mark>是 Yolov5 已經進化到多了 SPPF 這個function，我們用的 commit 當初沒有，所以我們要手動把這個function 加上。</p>
-<p>這個問題我修改了兩個檔案<br>
-1. utils/google_utils.py<br>
-2. models/common.py</p>
-</li>
-</ol>
+<pre><code>這個問題我修改了兩個檔案  
+1\. utils/google\_utils.py  
+2\. models/common.py
+</code></pre>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl"># yolov5/utils/google_utils.py
 </span></span><span class="line"><span class="cl">- response = requests.get(f&#39;https://api.github.com/repos/{repo}/releases/latest&#39;).json() 
 </span></span><span class="line"><span class="cl">
@@ -220,15 +217,15 @@ stroke-linejoin="round" class="feather feather-home">
 </span></span><span class="line"><span class="cl">            y1 = self.m(x)
 </span></span><span class="line"><span class="cl">            y2 = self.m(y1)
 </span></span><span class="line"><span class="cl">            return self.cv2(torch.cat([x, y1, y2, self.m(y2)], 1))
-</span></span></code></pre></div><ol>
-<li>
-<p>第二個錯誤是，&ldquo;the size of tensor a(80) must match the size of tensor b (56) at non-singleton dimension 3&rdquo;，原因是 Yolov5 幫我們預下載的 &ldquo;<a href="http://yolov5s.pt">yolov5s.pt</a>&rdquo; model 是最新的，不是這個 tag v5.0 支援的 model。所以我們要先把自動下載的 &ldquo;<a href="http://yolov5s.pt">yolov5s.pt</a>&rdquo; 刪掉後，再手動下載</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">wget https://github.com/ultralytics/yolov5/releases/download/v5.0/yolov5s.pt
-</span></span></code></pre></div><p>經過以上的踩雷後，Jetson nano 真的可以跑 Yolov5 了!!!! 附上原圖(紅色馬賽客是後來補上的，跑 YoloV5 的時候並沒有馬賽客)，跟跑出來的結果，成果相當的好啊!! 至少第一個球場上的網球都有被標到，看來我的撿球機器人已經邁向了 3%了!!</p>
-</li>
-</ol>
-<p><img src="/posts/62c5c439-ffd6-42f0-b782-28584cb546dd.jpeg" alt=""></p>
-<p><img src="/posts/e30fd96d-52bf-4e15-97c0-557732f732f0.jpeg" alt=""></p>
+</span></span></code></pre></div><p>第二個錯誤是，&ldquo;the size of tensor a(80) must match the size of tensor b (56) at non-singleton dimension 3&rdquo;，原因是 Yolov5 幫我們預下載的 &ldquo;<a href="http://yolov5s.pt">yolov5s.pt</a>&rdquo; model 是最新的，不是這個 tag v5.0 支援的 model。所以我們要先把自動下載的 &ldquo;<a href="http://yolov5s.pt">yolov5s.pt</a>&rdquo; 刪掉後，再手動下載</p>
+<pre><code>```plaintext
+wget https://github.com/ultralytics/yolov5/releases/download/v5.0/yolov5s.pt
+```
+
+經過以上的踩雷後，Jetson nano 真的可以跑 Yolov5 了!!!! 附上原圖(紅色馬賽客是後來補上的，跑 YoloV5 的時候並沒有馬賽客)，跟跑出來的結果，成果相當的好啊!! 至少第一個球場上的網球都有被標到，看來我的撿球機器人已經邁向了 3%了!!
+</code></pre>
+<p><img src="62c5c439-ffd6-42f0-b782-28584cb546dd.jpeg" alt=""></p>
+<p><img src="e30fd96d-52bf-4e15-97c0-557732f732f0.jpeg" alt=""></p>
 
             </div>
         </article></main>
@@ -269,7 +266,7 @@ stroke-linejoin="round" class="feather feather-home">
 </div>
     <small class="footer_copyright">
         © 2023 .
-        
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
     </small>
 </footer>
 
@@ -280,7 +277,7 @@ stroke-linejoin="round" class="feather feather-home">
 
 
     
-    <script src="https://example.org/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+    <script src="/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
 
     
 

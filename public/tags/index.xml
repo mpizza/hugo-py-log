@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on PYChen&#39;s blog</title>
-    <link>https://example.org/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on PYChen&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 10 May 2023 15:29:49 +0800</lastBuildDate><atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 May 2023 15:29:49 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI</title>
-      <link>https://example.org/tags/ai/</link>
+      <link>/tags/ai/</link>
       <pubDate>Wed, 10 May 2023 15:29:49 +0800</pubDate>
       
-      <guid>https://example.org/tags/ai/</guid>
+      <guid>/tags/ai/</guid>
       
       <description></description>
       
@@ -20,10 +20,10 @@
     
     <item>
       <title>NVIDIA</title>
-      <link>https://example.org/tags/nvidia/</link>
+      <link>/tags/nvidia/</link>
       <pubDate>Wed, 10 May 2023 15:29:49 +0800</pubDate>
       
-      <guid>https://example.org/tags/nvidia/</guid>
+      <guid>/tags/nvidia/</guid>
       
       <description></description>
       

@@ -1,4 +1,4 @@
-
+defaultContentLanguage = "zh-tw"
 languageCode = 'zh-tw'
 title = "PYChen's blog"
 theme = "hugo-blog-awesome"
