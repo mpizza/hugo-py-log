@@ -1,7 +1,7 @@
 baseURL = 'https://example.org/'
 languageCode = 'zh-tw'
 title = "PYChen's blog"
-theme = "hugo-blog-awesome"
+theme = "hugo-blog-awesome-no"
 
 # Allow to override `browserconfig.xml` params (configuration for windows embeded browsers)
 [params.browserconfig]
